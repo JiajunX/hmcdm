@@ -212,7 +212,7 @@ arma::mat TPmat(unsigned int K){
       arma::vec alpha_c = inv_bijectionvector(K,cc);
       double temp = 1.0;
       for(unsigned int k=0;k<K;k++){
-        temp = (alpha_r(k)<=alpha_c(k))*temp;
+        temp = (alpha_r(k)<=alpha_c(k))*temp*2;
       }
       TP(rr,cc) = temp;
     }
