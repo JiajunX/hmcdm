@@ -122,6 +122,18 @@ getMode <- function(sorted_vec, size) {
     .Call(`_hmcdm_getMode`, sorted_vec, size)
 }
 
+#' @title Generate non-monotonicity matrix
+#' @description Based on the latent attribute space, generate a matrix indicating whether it is possible to
+#' transition from pattern cc to cc', free from the monotonicity learning assumption.
+#' @param K An \code{int} of the number of attribtues.
+#' @return A 2^K-by-2^K \code{matrix} filled with 1, showing it is possible to transit between any two patterns 
+#' @examples
+#' TP = TPmatFree(4)
+#' @export
+TPmatFree <- function(K) {
+    .Call(`_hmcdm_TPmatFree`, K)
+}
+
 #' @title Obtain learning model point estimates
 #' @description Obtain EAPs of continuous parameters and EAP or MAP of the attribute trajectory estimates under
 #' the CDM learning models based on the MCMC output
@@ -723,5 +735,17 @@ rAlpha <- function(Omega, N, T, alpha1) {
 #' @export
 rOmega <- function(TP) {
     .Call(`_hmcdm_rOmega`, TP)
+}
+
+#' @title Generate a random transition matrix for the first order hidden Markov model
+#' @description Generate a random transition matrix under the unrestricted learning trajectory assumption
+#' @param TP A 2^K-by-2^K dichotomous matrix of indicating possible transitions
+#' @examples
+#' K = ncol(Q_list[[1]])
+#' TP = TPmatFree(K)
+#' Omega_sim = rOmega(TP)
+#' @export
+rOmegaFree <- function(TP) {
+    .Call(`_hmcdm_rOmegaFree`, TP)
 }
 

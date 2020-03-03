@@ -190,6 +190,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// TPmatFree
+arma::mat TPmatFree(unsigned int K);
+RcppExport SEXP _hmcdm_TPmatFree(SEXP KSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< unsigned int >::type K(KSEXP);
+    rcpp_result_gen = Rcpp::wrap(TPmatFree(K));
+    return rcpp_result_gen;
+END_RCPP
+}
 // point_estimates_learning
 Rcpp::List point_estimates_learning(const Rcpp::List output, const std::string model, const unsigned int N, const unsigned int Jt, const unsigned int K, const unsigned int T, bool alpha_EAP);
 RcppExport SEXP _hmcdm_point_estimates_learning(SEXP outputSEXP, SEXP modelSEXP, SEXP NSEXP, SEXP JtSEXP, SEXP KSEXP, SEXP TSEXP, SEXP alpha_EAPSEXP) {
@@ -863,6 +874,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rOmegaFree
+arma::mat rOmegaFree(const arma::mat& TP);
+RcppExport SEXP _hmcdm_rOmegaFree(SEXP TPSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::mat& >::type TP(TPSEXP);
+    rcpp_result_gen = Rcpp::wrap(rOmegaFree(TP));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_hmcdm_bijectionvector", (DL_FUNC) &_hmcdm_bijectionvector, 1},
@@ -880,6 +902,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_hmcdm_resp_miss", (DL_FUNC) &_hmcdm_resp_miss, 3},
     {"_hmcdm_OddsRatio", (DL_FUNC) &_hmcdm_OddsRatio, 3},
     {"_hmcdm_getMode", (DL_FUNC) &_hmcdm_getMode, 2},
+    {"_hmcdm_TPmatFree", (DL_FUNC) &_hmcdm_TPmatFree, 1},
     {"_hmcdm_point_estimates_learning", (DL_FUNC) &_hmcdm_point_estimates_learning, 7},
     {"_hmcdm_Learning_fit", (DL_FUNC) &_hmcdm_Learning_fit, 10},
     {"_hmcdm_parm_update_HO", (DL_FUNC) &_hmcdm_parm_update_HO, 16},
@@ -917,6 +940,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_hmcdm_simulate_alphas_FOHM", (DL_FUNC) &_hmcdm_simulate_alphas_FOHM, 3},
     {"_hmcdm_rAlpha", (DL_FUNC) &_hmcdm_rAlpha, 4},
     {"_hmcdm_rOmega", (DL_FUNC) &_hmcdm_rOmega, 1},
+    {"_hmcdm_rOmegaFree", (DL_FUNC) &_hmcdm_rOmegaFree, 1},
     {NULL, NULL, 0}
 };
 
