@@ -22,7 +22,6 @@ arma::cube simulate_alphas_FOHM(const arma::mat& Omega,const arma::mat& alpha0s,
 arma::mat rAlpha(const arma::mat& Omega,unsigned int N,unsigned int T, const arma::vec& alpha1);
 
 arma::mat rOmega(const arma::mat& TP);  
-
-arma::mat rOmegaFree(const arma::mat& TP);  
+  
   
 #endif
